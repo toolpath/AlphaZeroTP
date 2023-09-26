@@ -1,0 +1,34 @@
+name: AutoRelease
+on:
+  # Trigger on push or pull request events for the main branch
+  push:
+    branches: [ main ]
+jobs:
+  auto-release:
+    name: "auto-release"
+    runs-on: ubuntu-latest
+    env:
+      JULIA_PKG_USE_CLI_GIT: true
+      GIT_SSH_COMMAND: "ssh -i ~/.ssh/ghbot_ed25519"
+    steps:
+      - name: "Create ssh private key with read access to all julia repos"
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.TOOLPATH_MACHINE_USER_PRIVATE_KEY }}" > ~/.ssh/ghbot_ed25519
+          chmod 400 ~/.ssh/ghbot_ed25519
+
+      - name: "Git config"
+        run: |
+          git config --global user.name "toolpath-machine-user"
+          git config --global user.email "justin@toolpath.com"
+
+      - name: Clone
+        uses: actions/checkout@v3
+      - uses: julia-actions/setup-julia@v1
+
+      - name: "Add registry and TagTP"
+        run: |
+          julia -e 'using Pkg; Pkg.add("Example"); Pkg.Registry.add(RegistrySpec(url="git@github.com:Toolpath/ToolpathRegistry.git")); Pkg.add("TagTP")'
+
+      - name: Do the Release
+        run: julia --project=@. -e 'using TagTP; release()'
