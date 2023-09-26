@@ -20,7 +20,8 @@ module UserInterface
   using Crayons: @crayon_str
   using Colors: @colorant_str
   using ProgressMeter
-  using Serialization: serialize, deserialize
+  using JLD2
+  # using Serialization: serialize, deserialize
 
   include("log.jl")
   using .Log
