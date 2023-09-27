@@ -1,5 +1,5 @@
 import OpenSpiel
-using ..AlphaZero
+using ..AlphaZeroTP
 
 spiel_game = OpenSpiel.load_game("tic_tac_toe")
 
@@ -41,7 +41,7 @@ function parse_action(spec, str)
 end
 
 
-GameSpec() = AlphaZero.OpenSpielWrapper.Spec(
+GameSpec() = AlphaZeroTP.OpenSpielWrapper.Spec(
   spiel_game;
   vectorize_state,
   action_string,

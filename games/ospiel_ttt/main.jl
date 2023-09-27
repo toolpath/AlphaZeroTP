@@ -2,7 +2,7 @@ module OSpielTictactoe
   export GameSpec
   include("game.jl")
   module Training
-    using ..AlphaZero
+    using ..AlphaZeroTP
     import ..GameSpec
     include("params.jl")
  end # module Training

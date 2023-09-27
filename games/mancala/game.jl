@@ -1,4 +1,4 @@
-import AlphaZero.GI
+import AlphaZeroTP.GI
 
 using Crayons
 using StaticArrays

@@ -1,9 +1,9 @@
 module GridWorld
   export GameSpec, GameEnv
-  using AlphaZero
+  using AlphaZeroTP
   include("game.jl")
   module Training
-    using AlphaZero
+    using AlphaZeroTP
     import ..GameSpec
     include("params.jl")
   end

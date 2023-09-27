@@ -2,7 +2,7 @@
 #### Regenerate the training curves displayed on the tutorial and on the README
 ####
 
-using AlphaZero
+using AlphaZeroTP
 using JSON3
 
 # Defining the benchmarks

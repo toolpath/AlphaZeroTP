@@ -5,7 +5,7 @@ module Network
 
 export AbstractNetwork, OptimiserSpec, CyclicNesterov, Adam
 
-using ..AlphaZero
+using ..AlphaZeroTP
 
 using Base: @kwdef
 using Statistics: mean

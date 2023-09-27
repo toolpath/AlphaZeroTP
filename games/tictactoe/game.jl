@@ -1,4 +1,4 @@
-import AlphaZero.GI
+import AlphaZeroTP.GI
 using StaticArrays
 
 const BOARD_SIDE = 3

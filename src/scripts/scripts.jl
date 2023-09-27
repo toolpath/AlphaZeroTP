@@ -1,7 +1,7 @@
 module Scripts
 
-  using ..AlphaZero
-  using ..AlphaZero.UserInterface: Session, resume!
+  using ..AlphaZeroTP
+  using ..AlphaZeroTP.UserInterface: Session, resume!
 
   include("dummy_run.jl")
   export dummy_run
