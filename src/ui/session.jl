@@ -109,11 +109,11 @@ function save_env(env::Env, dir)
 end
 
 function load_env(dir)
-  gspec = load(joinpath(dir, GSPEC_FILE))
-  params = load(joinpath(dir, PARAMS_FILE))
-  curnn = load(joinpath(dir, CURNN_FILE))
-  bestnn = load(joinpath(dir, BESTNN_FILE))
-  experience = load(joinpath(dir, MEM_FILE))
+  gspec = load(joinpath(dir, GSPEC_FILE))["gspec"]
+  params = load(joinpath(dir, PARAMS_FILE))["params"]
+  curnn = load(joinpath(dir, CURNN_FILE))["curnn"]
+  bestnn = load(joinpath(dir, BESTNN_FILE))["bestnn"]
+  experience = load(joinpath(dir, MEM_FILE))["experience"]
   itc = open(JSON3.read, joinpath(dir, ITC_FILE), "r") 
   return Env(gspec, params, curnn, bestnn, experience, itc)
 end

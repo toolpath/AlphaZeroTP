@@ -21,7 +21,6 @@ module UserInterface
   using Colors: @colorant_str
   using ProgressMeter
   using JLD2
-  # using Serialization: serialize, deserialize
 
   include("log.jl")
   using .Log
