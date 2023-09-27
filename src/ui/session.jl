@@ -65,13 +65,13 @@ end
 ##### Save and load environments
 #####
 
-const GSPEC_FILE       =  "gspec.data"
-const BESTNN_FILE      =  "bestnn.data"
-const CURNN_FILE       =  "curnn.data"
-const MEM_FILE         =  "mem.data"
+const GSPEC_FILE       =  "gspec.jld2"
+const BESTNN_FILE      =  "bestnn.jld2"
+const CURNN_FILE       =  "curnn.jld2"
+const MEM_FILE         =  "mem.jld2"
 const ITC_FILE         =  "iter.txt"
 const REPORT_FILE      =  "report.json"
-const PARAMS_FILE      =  "params.data"
+const PARAMS_FILE      =  "params.jld2"
 const PARAMS_JSON_FILE =  "params.json"      # not used when loading envs
 const NET_PARAMS_FILE  =  "netparams.json"
 const BENCHMARK_FILE   =  "benchmark.json"
@@ -91,28 +91,29 @@ end
 
 function save_env(env::Env, dir)
   isdir(dir) || mkpath(dir)
-  serialize(joinpath(dir, GSPEC_FILE), env.gspec)
-  serialize(joinpath(dir, PARAMS_FILE), env.params)
+  jldsave(joinpath(dir, GSPEC_FILE); env.gspec)
+  jldsave(joinpath(dir, PARAMS_FILE); env.params)
   open(joinpath(dir, PARAMS_JSON_FILE), "w") do io
     JSON3.pretty(io, JSON3.write(env.params))
   end
   open(joinpath(dir, NET_PARAMS_FILE), "w") do io
     JSON3.pretty(io, JSON3.write(Network.hyperparams(env.bestnn)))
   end
-  serialize(joinpath(dir, BESTNN_FILE), env.bestnn)
-  serialize(joinpath(dir, CURNN_FILE), env.curnn)
-  serialize(joinpath(dir, MEM_FILE), get_experience(env))
+  jldsave(joinpath(dir, BESTNN_FILE); env.bestnn)
+  jldsave(joinpath(dir, CURNN_FILE); env.curnn)
+  experience = get_experience(env)
+  jldsave(joinpath(dir, MEM_FILE); experience)
   open(joinpath(dir, ITC_FILE), "w") do io
     JSON3.write(io, env.itc)
   end
 end
 
 function load_env(dir)
-  gspec = deserialize(joinpath(dir, GSPEC_FILE))
-  params = deserialize(joinpath(dir, PARAMS_FILE))
-  curnn = deserialize(joinpath(dir, CURNN_FILE))
-  bestnn = deserialize(joinpath(dir, BESTNN_FILE))
-  experience = deserialize(joinpath(dir, MEM_FILE))
+  gspec = load(joinpath(dir, GSPEC_FILE))["gspec"]
+  params = load(joinpath(dir, PARAMS_FILE))["params"]
+  curnn = load(joinpath(dir, CURNN_FILE))["curnn"]
+  bestnn = load(joinpath(dir, BESTNN_FILE))["bestnn"]
+  experience = load(joinpath(dir, MEM_FILE))["experience"]
   itc = open(JSON3.read, joinpath(dir, ITC_FILE), "r") 
   return Env(gspec, params, curnn, bestnn, experience, itc)
 end
