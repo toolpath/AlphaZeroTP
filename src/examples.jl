@@ -1,6 +1,6 @@
 module Examples
 
-  using ..AlphaZero
+  using ..AlphaZeroTP
 
   include("../games/tictactoe/main.jl")
   export Tictactoe

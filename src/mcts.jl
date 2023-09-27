@@ -19,7 +19,7 @@ module MCTS
 
 using Distributions: Categorical, Dirichlet
 
-using ..AlphaZero: GI, Util
+using ..AlphaZeroTP: GI, Util
 
 #####
 ##### Standard Oracles

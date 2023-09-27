@@ -8,7 +8,7 @@
 
 module Solver
 
-using AlphaZero
+using AlphaZeroTP
 
 import ..GameEnv, ..history, ..WHITE, ..NUM_CELLS
 
@@ -88,7 +88,7 @@ function qvalue(player, game, action)
   return qnext
 end
 
-function AlphaZero.think(p::Player, g)
+function AlphaZeroTP.think(p::Player, g)
   as = GI.available_actions(g)
   qs = [qvalue(p, g, a) for a in as]
   maxq = maximum(qs)

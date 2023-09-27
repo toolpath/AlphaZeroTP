@@ -1,4 +1,4 @@
-using AlphaZero
+using AlphaZeroTP
 
 include("../main.jl")
 using .ConnectFour

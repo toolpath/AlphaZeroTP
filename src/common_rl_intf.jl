@@ -3,7 +3,7 @@ Utilities for using AlphaZero.jl on RL environments that implement CommonRLInter
 """
 module CommonRLInterfaceWrapper
 
-using ..AlphaZero
+using ..AlphaZeroTP
 import CommonRLInterface
 using Setfield
 

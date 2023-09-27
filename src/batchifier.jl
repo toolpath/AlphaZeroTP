@@ -14,7 +14,7 @@ The typical workflow should be the following:
 """
 module Batchifier
 
-using ..AlphaZero: MCTS, Util, ProfUtils
+using ..AlphaZeroTP: MCTS, Util, ProfUtils
 
 export BatchedOracle
 

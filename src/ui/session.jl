@@ -342,7 +342,7 @@ function explore(session::Session; args...)
   explore(AlphaZeroPlayer(session.env; args...), session.env.gspec)
 end
 
-AlphaZero.AlphaZeroPlayer(s::Session; args...) = AlphaZero.AlphaZeroPlayer(s.env; args...)
+AlphaZeroTP.AlphaZeroPlayer(s::Session; args...) = AlphaZeroTP.AlphaZeroPlayer(s.env; args...)
 
 #####
 ##### Utilities for printing reports

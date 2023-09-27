@@ -6,7 +6,7 @@ module FluxLib
 
 export SimpleNet, SimpleNetHP, ResNet, ResNetHP
 
-using ..AlphaZero
+using ..AlphaZeroTP
 
 using CUDA
 using Base: @kwdef

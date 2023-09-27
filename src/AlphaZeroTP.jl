@@ -3,7 +3,7 @@
 ##### Jonathan Laurent, Carnegie Mellon University (2019-2021)
 #####
 
-module AlphaZero
+module AlphaZeroTP
 
   import Distributed
   using Formatting

@@ -1,5 +1,5 @@
-import AlphaZero.GI
-import AlphaZero.MCTS
+import AlphaZeroTP.GI
+import AlphaZeroTP.MCTS
 
 include("../game.jl")
 using .Mancala

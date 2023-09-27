@@ -10,7 +10,7 @@ module UserInterface
   export explore
   export Session, resume!, save
 
-  using ..AlphaZero
+  using ..AlphaZeroTP
 
   import Plots
   import JSON3
