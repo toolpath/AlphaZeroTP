@@ -1,7 +1,7 @@
 name = "AlphaZeroTP"
 uuid = "62478450-e654-4b43-b20a-c9dae170cc77"
 authors = ["Andrew Lambe <andrew.b.lambe@gmail.com>, forked from AlphaZero.jl by Jonathan Laurent <jonathan.laurent@cs.cmu.edu>"]
-version = "0.5.8"
+version = "0.6.0"
 
 [deps]
 ArgParse = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
