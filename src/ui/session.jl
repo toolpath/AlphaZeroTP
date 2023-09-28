@@ -90,7 +90,11 @@ function valid_session_dir(dir)
 end
 
 function valid_finetuning_session_dir(dir)
-  isfile(joinpath(dir, BESTNN_FILE))
+  isfile(joinpath(dir, BESTNN_FILE)) &&
+  !isfile(joinpath(dir, PARAMS_FILE)) &&
+  !isfile(joinpath(dir, CURNN_FILE)) &&
+  !isfile(joinpath(dir, MEM_FILE)) &&
+  !isfile(joinpath(dir, ITC_FILE))
 end
 
 function save_env(env::Env, dir)
