@@ -89,6 +89,10 @@ function valid_session_dir(dir)
   isfile(joinpath(dir, ITC_FILE))
 end
 
+function valid_finetuning_session_dir(dir)
+  isfile(joinpath(dir, CURNN_FILE))
+end
+
 function save_env(env::Env, dir)
   isdir(dir) || mkpath(dir)
   jldsave(joinpath(dir, GSPEC_FILE); env.gspec)
@@ -289,6 +293,13 @@ function Session(
     @assert same_json(Network.hyperparams(env.bestnn), e.netparams)
     session = Session(env, dir, logger, autosave, save_intermediate, e.benchmark)
     session.report = load_session_report(dir, env.itc)
+  elseif valid_finetuning_session_dir(dir)
+    Log.section(logger, 1, "Loading finetuning environment from: $dir")
+    # The network must be compatible with the parameters defined in experiment e
+    curnn = load(joinpath(dir, CURNN_FILE))["curnn"]
+    env = Env(e.gspec, e.params, curnn)
+    session = Session(env, dir, logger, autosave, save_intermediate, e.benchmark)
+    session.report = SessionReport()
   else
     network = e.mknet(e.gspec, e.netparams)
     env = Env(e.gspec, e.params, network)
