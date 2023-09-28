@@ -297,6 +297,7 @@ function Session(
     Log.section(logger, 1, "Loading finetuning environment from: $dir")
     # The network must be compatible with the parameters defined in experiment e
     curnn = load(joinpath(dir, CURNN_FILE))["curnn"]
+    curnn.gspec = e.gspec
     env = Env(e.gspec, e.params, curnn)
     session = Session(env, dir, logger, autosave, save_intermediate, e.benchmark)
     session.report = SessionReport()
