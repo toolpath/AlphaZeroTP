@@ -90,7 +90,7 @@ function valid_session_dir(dir)
 end
 
 function valid_finetuning_session_dir(dir)
-  isfile(joinpath(dir, CURNN_FILE))
+  isfile(joinpath(dir, BESTNN_FILE))
 end
 
 function save_env(env::Env, dir)
@@ -296,7 +296,7 @@ function Session(
   elseif valid_finetuning_session_dir(dir)
     Log.section(logger, 1, "Loading finetuning environment from: $dir")
     # The network must be compatible with the parameters defined in experiment e
-    curnn = load(joinpath(dir, CURNN_FILE))["curnn"]
+    curnn = load(joinpath(dir, BESTNN_FILE))["bestnn"]
     curnn.gspec = e.gspec
     env = Env(e.gspec, e.params, curnn)
     session = Session(env, dir, logger, autosave, save_intermediate, e.benchmark)
