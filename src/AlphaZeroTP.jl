@@ -134,12 +134,6 @@ module AlphaZeroTP
       include("networks/flux.jl")
       const NetLib = FluxLib
     end
-  elseif DEFAULT_DL_FRAMEWORK == "KNET"
-    @info "Using the Knet implementation of AlphaZero.NetLib."
-    @eval begin
-      include("networks/knet.jl")
-      const NetLib = KnetLib
-    end
   else
     error("Unknown DL framework: $(DEFAULT_DL_FRAMEWORK)")
   end

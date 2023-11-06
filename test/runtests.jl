@@ -1,6 +1,6 @@
-using AlphaZero
-using AlphaZero.Examples: games, experiments
-using AlphaZero.Scripts: dummy_run, test_game
+using AlphaZeroTP
+using AlphaZeroTP.Examples: games, experiments
+using AlphaZeroTP.Scripts: dummy_run, test_game
 
 using Base.Filesystem: rm
 using Test
